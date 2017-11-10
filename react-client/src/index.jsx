@@ -12,6 +12,10 @@ class App extends React.Component {
     }
   }
 
+  search() {
+
+  }
+
   componentDidMount() {
     $.ajax({
       url: '/items', 
@@ -29,7 +33,8 @@ class App extends React.Component {
   render () {
     return (<div>
       <h1>RecipeMe</h1>
-      <List items={this.state.recipes}/>
+      <Search search={this.search.bind(this)}/>
+      <List recipes={this.state.recipes}/>
     </div>)
   }
 }

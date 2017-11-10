@@ -19,7 +19,7 @@ var recipeSchema = mongoose.Schema({
   search: String
 });
 
-var Recipes = mongoose.model('Recipes', itemSchema);
+var Recipes = mongoose.model('Recipes', recipeSchema);
 
 var selectAll = function(callback) {
   Item.find({}, function(err, items) {
