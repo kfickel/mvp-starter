@@ -46,7 +46,7 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
-  "Before, I was so overwhelmed by all the choices I had to make to choose a recipe. With RecipeMe, there are a few options, but I know they will all be good. All I need to type in is an ingredient and I know RecipeMe will provide me with a delicious recipe." - customer John Smith
+  "Before, I was so overwhelmed by all the choices I had to make to choose a recipe. With RecipeMe, there are a few options, but I know they will all be great. All I need to type in is an ingredient and I know RecipeMe will provide me with a delicious recipe." - customer John Smith
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
