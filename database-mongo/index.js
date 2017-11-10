@@ -22,11 +22,11 @@ var recipeSchema = mongoose.Schema({
 var Recipes = mongoose.model('Recipes', recipeSchema);
 
 var selectAll = function(callback) {
-  Item.find({}, function(err, items) {
+  Recipes.find({}, function(err, recipes) {
     if(err) {
       callback(err, null);
     } else {
-      callback(null, items);
+      callback(null, recipes);
     }
   });
 };
