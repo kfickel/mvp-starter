@@ -18,27 +18,36 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  RecipeMe
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  The market for the product are people who cook their own meals and want recipes that are filtered to the highest rating.
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  The product will search only for recipes and output the five most highley rated recipes. The benefit of the product, is that it is easy to use and filters the recipes for the user based on their search.
 
 ## Problem ##
   > Describe the problem your product solves.
+  The product solves the problem of not knowing what to make for a meal, or wanting to try a new recipe, but not knowing what to try.
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  RecipeMe will provide people with highly rated recipes and with a small number provided, makes decision making easier by not being overwhelmed by a multitude of choices.
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+  "RecipeMe makes searching for recipes enjoyable, and always provides me with delicious recipes" - CEO Katherine Fickel
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  RecipeMe is simple to use. All you need to do is type in an ingredient or a meal idea and RecipeMe will provide you with the top five most popular recipes for that item.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  "Before, I was so overwhelmed by all the choices I had to make to choose a recipe. With RecipeMe, there are a few options, but I know they will all be good. All I need to type in is an ingredient and I know RecipeMe will provide me with a delicious recipe." - customer John Smith
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+  Try out RecipeMe for yourself and see how easy it is to find a recipe for your next meal. Go to our page and let RecipeMe solve your recipe needs.
