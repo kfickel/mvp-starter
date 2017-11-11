@@ -27,10 +27,14 @@ app.post('/recipes', function(req, res) {
   })
 });
 
-app.get('/items', function (req, res) {
-  // console.log('here');
+app.get('/recipes', function (req, res) {
+  // console.log('HERE', req);
+  
+    // foodFork(recipe, function() {
+    //   res.end('complete');
+    // })
 
-  items.selectAll(function(err, data) {
+  items.select(function(err, data) {
     if(err) {
       res.sendStatus(500);
     } else {

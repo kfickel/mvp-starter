@@ -11,6 +11,7 @@ class App extends React.Component {
       recipes: [],
       query: ''
     }
+    this.setState = this.setState.bind(this);
   }
 
   search(query) {
@@ -20,7 +21,25 @@ class App extends React.Component {
       url: '/recipes',
       data: JSON.stringify(query), 
       success: (data) => {
-        console.log('success ', data);
+        console.log("POST DONE");
+        this.get(query);
+      },
+      error: (err) => {
+        console.log('err', err);
+      }
+    });
+  }
+
+  get(query) {
+    $.ajax({
+      type: "GET",
+      url: '/recipes', 
+      data: JSON.stringify(query),
+      success: (data) => {
+        console.log('GET REQ');
+        this.setState ({
+          recipes: data,
+        })
       },
       error: (err) => {
         console.log('err', err);

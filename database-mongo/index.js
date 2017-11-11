@@ -11,6 +11,8 @@ db.once('open', function() {
   console.log('mongoose connected successfully');
 });
 
+var search = '';
+
 var recipeSchema = mongoose.Schema({
   imageUrl: String,
   title: String,
@@ -32,9 +34,10 @@ var createRecipe = function(obj, query) {
 }
 
 var saveRecipes = function(recipeArr, query, cb) {
-  console.log('recipeArr ', recipeArr.recipes[0]);
+  search = query;
+  // console.log('recipeArr ', recipeArr.recipes[0]);
   for (let i = 0; i < recipeArr.recipes.length; i++) {
-    console.log('RC \n\n', recipeArr.recipes[i]);
+    // console.log('RC \n\n', recipeArr.recipes[i]);
     Recipes.find({search: query}, function(err, recipes) {
       if (recipes.search !== query) {
         createRecipe(recipeArr.recipes[i], query);
@@ -44,6 +47,17 @@ var saveRecipes = function(recipeArr, query, cb) {
       cb();
     }
   }
+}
+
+var select = function(callback) {
+  var recipes = 5;
+  Recipes.find({search: search}, function(err, recipes) {
+    if(err) {
+      callback(err, null);
+    } else {
+      callback(null, recipes.slice(0,5));
+    }
+  });
 }
 
 var selectAll = function(callback) {
@@ -58,3 +72,4 @@ var selectAll = function(callback) {
 
 module.exports.selectAll = selectAll;
 module.exports.saveRecipes = saveRecipes;
+module.exports.select = select;
