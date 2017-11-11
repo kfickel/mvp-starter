@@ -6,6 +6,7 @@ const ListItem = (props) => (
     <img src={props.recipe.imageUrl}/>
     <div><a href={props.recipe.recipeUrl}>{ props.recipe.title }</a></div>
     <div>Rating: {props.recipe.rating}</div>
+    <input type="submit" value="SaveMe" onClick={() => {props.save(props.recipe.title, props.recipe.search)}}/>
     <p/>
   </div>
 )

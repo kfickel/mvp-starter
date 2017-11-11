@@ -9,7 +9,8 @@ class App extends React.Component {
     super(props);
     this.state = { 
       recipes: [],
-      query: ''
+      query: '',
+      savedRecipes: [],
     }
     this.setState = this.setState.bind(this);
   }
@@ -21,8 +22,8 @@ class App extends React.Component {
       url: '/recipes',
       data: JSON.stringify(query), 
       success: (data) => {
-        // console.log("POST DONE");
-        this.get(query);
+        console.log("POST DONE");
+        this.get('/recipes');
       },
       error: (err) => {
         console.log('err', err);
@@ -30,15 +31,31 @@ class App extends React.Component {
     });
   }
 
-  get() {
+  get(path) {
     $.ajax({
       type: "GET",
-      url: '/recipes', 
+      url: path, 
       success: (data) => {
-        // console.log('GET REQ');
+        console.log('GET REQ', data);
         this.setState ({
           recipes: data,
         })
+      },
+      error: (err) => {
+        console.log('err', err);
+      }
+    });
+  }
+
+  save(title, query) {
+    console.log('TITLE ', title);
+    $.ajax({
+      type: "POST",
+      url: '/save', 
+      data: JSON.stringify(title +'...'+query),
+      success: (data) => {
+        console.log('GET REQ');
+        // this.get('/save');
       },
       error: (err) => {
         console.log('err', err);
@@ -65,9 +82,9 @@ class App extends React.Component {
     return (<div>
       <h1>RecipeMe</h1>
       <Search search={this.search.bind(this)} value={this.query}/>
-      <List recipes={this.state.recipes}/>
+      <List recipes={this.state.recipes} save={this.save.bind(this)}/>
     </div>)
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App class="app"/>, document.getElementById('app'));

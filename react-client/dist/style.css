@@ -1,6 +1,14 @@
 .app {
   height: 100%;
   width: 100%;
-  justify-content: center;
+  text-align: center;
+}
 
+input.search {
+  width: 50%;
+  height: 50%;
+}
+
+.results {
+  text-align: left
 }

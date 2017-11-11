@@ -26,7 +26,7 @@ class Search extends React.Component {
   render() {
     return (
       <div>
-        <input type="text" onChange={this.handleChange}/>
+        <input className="search" type="text" onChange={this.handleChange}/>
         <input type="submit" value="Submit" onClick={this.search}/>
       </div>
     )

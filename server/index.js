@@ -23,18 +23,15 @@ app.post('/recipes', function(req, res) {
     foodFork(recipe, function() {
       res.end('complete');
     })
-    // console.log('REQ data ', data);
   })
 });
 
 app.get('/recipes', function (req, res) {
-  // console.log('HERE', req);
-  
-    // foodFork(recipe, function() {
-    //   res.end('complete');
-    // })
-
-  items.select(function(err, data) {
+  items.select(
+  // .then(function(recipes) {
+  //   res.json(recipes);
+  // });
+  function(err, data) {
     if(err) {
       res.sendStatus(500);
     } else {
@@ -50,6 +47,28 @@ app.get('/first', function(req, res) {
     } else {
       res.json(data);
     }
+  })
+})
+
+app.post('/save', function(req, res) {
+  var save = '';
+  req.on('data', (chunk) => {
+    save += chunk;
+  })
+  req.on('end', () => {
+    for (var i = 0; i < save.length; i ++) {
+      // console.log('slice ', save.slice(i, i+3));
+      if (save.slice(i, i+3) === '...') {
+        var title = save.slice(0,i);
+        // console.log('title ', title);
+        var query = save.slice(i+3);
+        items.userRecipes(title, query, function() {
+          res.send('')
+        })
+        // console.log('query ', query);
+      }
+    }
+    // console.log('save ', save);
   })
 })
 

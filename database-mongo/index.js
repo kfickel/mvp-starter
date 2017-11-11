@@ -21,16 +21,39 @@ var recipeSchema = mongoose.Schema({
   search: String
 });
 
+var saveRecipeSchema = mongoose.Schema({
+  imageUrl: String,
+  title: String,
+  rating: Number,
+  recipeUrl: String,
+  search: String
+});
+
 var Recipes = mongoose.model('Recipes', recipeSchema);
 
-var createRecipe = function(obj, query) {
-  Recipes.create({
+var ReSaveRecipes = mongoose.model('ReSaveRecipes', saveRecipeSchema);
+
+
+var createRecipe = function(obj, query, model, title, cb) {
+  model.create({
     imageUrl: obj.image_url,
-    title: obj.title,
+    title: title || obj.title,
     rating: obj.social_rank,
     recipeUrl: obj.source_url,
     search: query
   })
+}
+
+var userRecipes = function(title, query, cb) {
+  Recipes.find({title: title}, function(err, recipes) {
+    if(err) {
+      cb();
+    } else {
+      createRecipe(recipes, query, ReSaveRecipes, title, function () {
+        cb();
+      });
+    }
+  });
 }
 
 var saveRecipes = function(recipeArr, query, cb) {
@@ -40,24 +63,26 @@ var saveRecipes = function(recipeArr, query, cb) {
     // console.log('RC \n\n', recipeArr.recipes[i]);
     Recipes.find({search: query}, function(err, recipes) {
       if (recipes.search !== query) {
-        createRecipe(recipeArr.recipes[i], query);
+        createRecipe(recipeArr.recipes[i], query, Recipes);
       }
     })
     if (i === recipeArr.recipes.length - 1) {
+      console.log('i ', i);
       cb();
     }
   }
 }
 
 var select = function(callback) {
-  var recipes = 5;
   Recipes.find({search: search}, function(err, recipes) {
     if(err) {
       callback(err, null);
     } else {
+      console.log('recipes ', recipes);
       callback(null, recipes.slice(0,5));
     }
   });
+
 }
 
 var selectAll = function(callback) {
@@ -75,3 +100,4 @@ var selectAll = function(callback) {
 module.exports.selectAll = selectAll;
 module.exports.saveRecipes = saveRecipes;
 module.exports.select = select;
+module.exports.userRecipes = userRecipes;
