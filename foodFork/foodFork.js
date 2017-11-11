@@ -2,6 +2,7 @@
 // var jq = require('jquery');
 var request = require('request');
 var api = require('../config.js');
+var db = require('../database-mongo/index.js');
 
 var foodFork = function(recipe, cb) {
   console.log('recipe ', recipe)
@@ -21,11 +22,11 @@ var foodFork = function(recipe, cb) {
   request(options, function(err, res, body) {
     if (!err && res.statusCode === 200) {
       var recipes = JSON.parse(body);
+      db.saveRecipes(recipes, recipe, cb)
       console.log('BODY ', recipes);
-      cb()
     } else {
       console.log('ERROR ', err);
-      cb()
+      // cb()
     }
   })
   // jq.ajax({

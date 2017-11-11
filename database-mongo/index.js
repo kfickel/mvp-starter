@@ -21,6 +21,29 @@ var recipeSchema = mongoose.Schema({
 
 var Recipes = mongoose.model('Recipes', recipeSchema);
 
+var createRecipe = function(obj, query) {
+  Recipe.create({
+    imageUrl: obj.image_url,
+    title: obj.title,
+    rating: obj.social_rank,
+    recipeUrl: obj.source_url,
+    search: query
+  })
+}
+
+var saveRecipes = function(recipeArr, query, cb) {
+  for (let i = 0; i < recipeArr.length; i++) {
+    Recipes.find({search: query}, function(err, recipes) {
+      if (recipes.search !== query) {
+        createRecipe(recipeArr[i], query);
+      }
+    })
+    if (i === recipeArr.length - 1) {
+      cb();
+    }
+  }
+}
+
 var selectAll = function(callback) {
   Recipes.find({}, function(err, recipes) {
     if(err) {
@@ -32,3 +55,4 @@ var selectAll = function(callback) {
 };
 
 module.exports.selectAll = selectAll;
+module.exports.saveRecipes = saveRecipes;
