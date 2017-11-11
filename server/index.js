@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var foodFork = require('../foodFork/foodFork.js');
 // UNCOMMENT THE DATABASE YOU'D LIKE TO USE
 // var items = require('../database-mysql');
 var items = require('../database-mongo');
@@ -13,7 +14,13 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 // app.use(express.static(__dirname + '/../angular-client'));
 // app.use(express.static(__dirname + '/../node_modules'));
 
+app.post('/recipes', function(req, res) {
+  console.log('REQ DATA ', req.data);
+});
+
 app.get('/items', function (req, res) {
+  // console.log('here');
+
   items.selectAll(function(err, data) {
     if(err) {
       res.sendStatus(500);
