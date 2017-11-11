@@ -74,11 +74,11 @@ var saveRecipes = function(recipeArr, query, cb) {
 }
 
 var select = function(callback) {
-  Recipes.find({search: search}, function(err, recipes) {
+  Recipes.find({search: search}).sort({rating: -1}).exec(function(err, recipes) {
     if(err) {
       callback(err, null);
     } else {
-      console.log('recipes ', recipes);
+      // console.log('recipes ', recipes);
       callback(null, recipes.slice(0,5));
     }
   });
@@ -87,7 +87,7 @@ var select = function(callback) {
 
 var selectAll = function(callback) {
   // console.log('HERE');
-  Recipes.find().sort({ratings: -1}).exec(function(err, recipes) {
+  Recipes.find().sort({rating: -1}).exec(function(err, recipes) {
     // console.log('RECIPE ', recipes);
     if(err) {
       callback(err, null);

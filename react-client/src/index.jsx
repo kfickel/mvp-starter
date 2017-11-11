@@ -36,7 +36,7 @@ class App extends React.Component {
       type: "GET",
       url: path, 
       success: (data) => {
-        console.log('GET REQ', data);
+        // console.log('GET REQ', data);
         this.setState ({
           recipes: data,
         })
