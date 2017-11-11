@@ -48,7 +48,7 @@ app.get('/first', function(req, res) {
       res.json(data);
     }
   })
-})
+});
 
 app.post('/save', function(req, res) {
   var save = '';
@@ -69,6 +69,16 @@ app.post('/save', function(req, res) {
       }
     }
     // console.log('save ', save);
+  })
+});
+
+app.get('/save', function(req, res) {
+  items.selectAll('Recipes', function(err, data) {
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.json(data);
+    }
   })
 })
 

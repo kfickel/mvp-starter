@@ -36,7 +36,7 @@ class App extends React.Component {
       type: "GET",
       url: path, 
       success: (data) => {
-        // console.log('GET REQ', data);
+        console.log('GET REQ', data, 'path', path);
         this.setState ({
           recipes: data,
         })
@@ -55,7 +55,7 @@ class App extends React.Component {
       data: JSON.stringify(title +'...'+query),
       success: (data) => {
         console.log('GET REQ');
-        // this.get('/save');
+        this.get('/save');
       },
       error: (err) => {
         console.log('err', err);

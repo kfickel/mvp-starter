@@ -31,7 +31,7 @@ var saveRecipeSchema = mongoose.Schema({
 
 var Recipes = mongoose.model('Recipes', recipeSchema);
 
-var ReSaveRecipes = mongoose.model('ReSaveRecipes', saveRecipeSchema);
+var ReSaveRecipes = mongoose.model('ReSaveRecipes', recipeSchema);
 
 
 var createRecipe = function(obj, query, model, title, cb) {
@@ -85,16 +85,27 @@ var select = function(callback) {
 
 }
 
-var selectAll = function(callback) {
+var selectAll = function(model, callback) {
   // console.log('HERE');
-  Recipes.find().sort({rating: -1}).exec(function(err, recipes) {
-    // console.log('RECIPE ', recipes);
-    if(err) {
-      callback(err, null);
-    } else {
-      callback(null, recipes.slice(0,10));
-    }
-  });
+  if (model === 'Recipes') {
+    Recipes.find().sort({rating: -1}).exec(function(err, recipes) {
+      // console.log('RECIPE ', recipes);
+      if(err) {
+        callback(err, null);
+      } else {
+        callback(null, recipes.slice(0,10));
+      }
+    });
+  } else if (model === 'ReSaveRecipes') {
+    ReSaveRecipes.find().sort({rating: -1}).exec(function(err, recipes) {
+      // console.log('RECIPE ', recipes);
+      if(err) {
+        callback(err, null);
+      } else {
+        callback(null, recipes.slice(0,10));
+      }
+    });
+  }
 };
 
 module.exports.selectAll = selectAll;
