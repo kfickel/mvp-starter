@@ -61,11 +61,13 @@ var select = function(callback) {
 }
 
 var selectAll = function(callback) {
-  Recipes.find({}, function(err, recipes) {
+  console.log('HERE');
+  Recipes.find().sort({ratings: -1}).exec(function(err, recipes) {
+    console.log('RECIPE ', recipes);
     if(err) {
       callback(err, null);
     } else {
-      callback(null, recipes);
+      callback(null, recipes.slice(0,10));
     }
   });
 };

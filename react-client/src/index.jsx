@@ -30,11 +30,10 @@ class App extends React.Component {
     });
   }
 
-  get(query) {
+  get() {
     $.ajax({
       type: "GET",
       url: '/recipes', 
-      data: JSON.stringify(query),
       success: (data) => {
         console.log('GET REQ');
         this.setState ({
@@ -49,8 +48,9 @@ class App extends React.Component {
 
   componentDidMount() {
     $.ajax({
-      url: '/recipes', 
+      url: '/first', 
       success: (data) => {
+        console.log('DATA ', data);
         this.setState({
           recipes: data
         })
