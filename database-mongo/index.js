@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/recipes');
 
 var db = mongoose.connection;
 
@@ -22,7 +22,7 @@ var recipeSchema = mongoose.Schema({
 var Recipes = mongoose.model('Recipes', recipeSchema);
 
 var createRecipe = function(obj, query) {
-  Recipe.create({
+  Recipes.create({
     imageUrl: obj.image_url,
     title: obj.title,
     rating: obj.social_rank,
@@ -32,13 +32,15 @@ var createRecipe = function(obj, query) {
 }
 
 var saveRecipes = function(recipeArr, query, cb) {
-  for (let i = 0; i < recipeArr.length; i++) {
+  console.log('recipeArr ', recipeArr.recipes[0]);
+  for (let i = 0; i < recipeArr.recipes.length; i++) {
+    console.log('RC \n\n', recipeArr.recipes[i]);
     Recipes.find({search: query}, function(err, recipes) {
       if (recipes.search !== query) {
-        createRecipe(recipeArr[i], query);
+        createRecipe(recipeArr.recipes[i], query);
       }
     })
-    if (i === recipeArr.length - 1) {
+    if (i === recipeArr.recipes.length - 1) {
       cb();
     }
   }

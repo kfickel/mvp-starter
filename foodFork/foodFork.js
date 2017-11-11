@@ -22,8 +22,9 @@ var foodFork = function(recipe, cb) {
   request(options, function(err, res, body) {
     if (!err && res.statusCode === 200) {
       var recipes = JSON.parse(body);
-      db.saveRecipes(recipes, recipe, cb)
-      console.log('BODY ', recipes);
+      console.log('here');
+      db.saveRecipes(recipes, recipe, cb);
+      // console.log('BODY ', recipes);
     } else {
       console.log('ERROR ', err);
       // cb()
