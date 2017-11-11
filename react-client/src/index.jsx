@@ -15,13 +15,13 @@ class App extends React.Component {
   }
 
   search(query) {
-    console.log('QUERY ', query);
+    // console.log('QUERY ', query);
     $.ajax({
       type: "POST",
       url: '/recipes',
       data: JSON.stringify(query), 
       success: (data) => {
-        console.log("POST DONE");
+        // console.log("POST DONE");
         this.get(query);
       },
       error: (err) => {
@@ -35,7 +35,7 @@ class App extends React.Component {
       type: "GET",
       url: '/recipes', 
       success: (data) => {
-        console.log('GET REQ');
+        // console.log('GET REQ');
         this.setState ({
           recipes: data,
         })
@@ -50,7 +50,7 @@ class App extends React.Component {
     $.ajax({
       url: '/first', 
       success: (data) => {
-        console.log('DATA ', data);
+        // console.log('DATA ', data);
         this.setState({
           recipes: data
         })

@@ -61,9 +61,9 @@ var select = function(callback) {
 }
 
 var selectAll = function(callback) {
-  console.log('HERE');
+  // console.log('HERE');
   Recipes.find().sort({ratings: -1}).exec(function(err, recipes) {
-    console.log('RECIPE ', recipes);
+    // console.log('RECIPE ', recipes);
     if(err) {
       callback(err, null);
     } else {
