@@ -17,7 +17,7 @@ class Search extends React.Component {
   }
 
   handleChange(e){
-    console.log('event ', e.target.value);
+    // console.log('event ', e.target.value);
     this.setState({
       search: e.target.value
     })

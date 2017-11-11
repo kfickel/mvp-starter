@@ -15,7 +15,16 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 // app.use(express.static(__dirname + '/../node_modules'));
 
 app.post('/recipes', function(req, res) {
-  console.log('REQ DATA ', req.data);
+  var recipe = '';
+  req.on('data', (chunk) => {
+    recipe += chunk;
+  })
+  req.on('end', () => {
+    foodFork(recipe, function() {
+      res.end('complete');
+    })
+    console.log('REQ data ', data);
+  })
 });
 
 app.get('/items', function (req, res) {

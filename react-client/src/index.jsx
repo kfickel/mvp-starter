@@ -14,14 +14,13 @@ class App extends React.Component {
   }
 
   search(query) {
-    // console.log('QUERY ', query);
+    console.log('QUERY ', query);
     $.ajax({
+      type: "POST",
       url: '/recipes',
-      data: query, 
+      data: JSON.stringify(query), 
       success: (data) => {
-        // this.setState({
-        //   recipes: data
-        // })
+        console.log('success ', data);
       },
       error: (err) => {
         console.log('err', err);

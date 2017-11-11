@@ -1,9 +1,10 @@
 // var http = require('http');
-var jq = require('jquery')
+var jq = require('jquery');
 // var request = require('request');
-var api = require('../config.js')
+var api = require('../config.js');
 
-var foodFork = function(recipe) {
+var foodFork = function(recipe, cb) {
+  console.log('recipe ', recipe)
   jq.ajax({
     url: 'http://food2fork.com/api/search',
     type: 'GET',
