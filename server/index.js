@@ -23,7 +23,7 @@ app.post('/recipes', function(req, res) {
     foodFork(recipe, function() {
       res.end('complete');
     })
-    console.log('REQ data ', data);
+    // console.log('REQ data ', data);
   })
 });
 
