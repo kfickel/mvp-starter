@@ -23,7 +23,6 @@ class App extends React.Component {
       url: '/recipes',
       data: JSON.stringify(query), 
       success: (data) => {
-        console.log("POST DONE");
         this.get();
       },
       error: (err) => {
@@ -37,7 +36,6 @@ class App extends React.Component {
       type: "GET",
       url: '/recipes', 
       success: (data) => {
-        console.log('rec ', data)
         this.setState ({
           recipes: data,
         })
