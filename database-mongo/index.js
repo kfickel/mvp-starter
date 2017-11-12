@@ -35,21 +35,43 @@ var ReSaveRecipes = mongoose.model('ReSaveRecipes', recipeSchema);
 
 
 var createRecipe = function(obj, query, model, title, cb) {
-  model.create({
-    imageUrl: obj.image_url,
-    title: title || obj.title,
-    rating: obj.social_rank,
-    recipeUrl: obj.source_url,
-    search: query
-  })
+  console.log('hello ', obj);
+  if (obj.hasOwnProperty('image_url')) {
+    console.log('image');
+    model.create({
+      imageUrl: obj.image_url, 
+      title: title, 
+      rating: obj.social_rank,
+      recipeUrl: obj.source_url,
+      search: query
+    })
+  } else {
+    model.create({
+      imageUrl: obj.imageUrl,
+      title: obj.title,
+      rating: obj.socialRank,
+      recipeUrl: obj.recipeUrl,
+      search: query
+    })
+    cb()
+  }
 }
 
 var userRecipes = function(title, query, cb) {
-  Recipes.find({title: title}, function(err, recipes) {
+  // console.log('title ', title);
+  let term = {
+    title,
+  };
+  // console.log('term is ', term);
+  // 'Guacamole Grilled Cheese Sandwich'
+  Recipes.find(term).exec(function(err, recipes) {
     if(err) {
+      // console.log('ERR ', err);
       cb();
     } else {
-      createRecipe(recipes, query, ReSaveRecipes, title, function () {
+      console.log('recipes', recipes);
+      createRecipe(recipes[0], query, ReSaveRecipes, title, function () {
+        // console.log('CB ')
         cb();
       });
     }

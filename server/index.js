@@ -41,7 +41,7 @@ app.get('/recipes', function (req, res) {
 });
 
 app.get('/first', function(req, res) {
-  items.selectAll(function(err, data) {
+  items.selectAll('Recipes', function(err, data) {
     if (err) {
       res.sendStatus(500);
     } else {
@@ -52,6 +52,7 @@ app.get('/first', function(req, res) {
 
 app.post('/save', function(req, res) {
   var save = '';
+  console.log('saved is ', req.body);
   req.on('data', (chunk) => {
     save += chunk;
   })
@@ -59,7 +60,7 @@ app.post('/save', function(req, res) {
     for (var i = 0; i < save.length; i ++) {
       // console.log('slice ', save.slice(i, i+3));
       if (save.slice(i, i+3) === '...') {
-        var title = save.slice(0,i);
+        var title = save.slice(1,i);
         // console.log('title ', title);
         var query = save.slice(i+3);
         items.userRecipes(title, query, function() {
@@ -73,7 +74,7 @@ app.post('/save', function(req, res) {
 });
 
 app.get('/save', function(req, res) {
-  items.selectAll('Recipes', function(err, data) {
+  items.selectAll('ReSaveRecipes', function(err, data) {
     if (err) {
       res.sendStatus(500);
     } else {

@@ -12,3 +12,8 @@ input.search {
 .results {
   text-align: left
 }
+
+.column {
+  float: left;
+  width: 50%;
+}

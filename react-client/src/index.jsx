@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import List from './components/List.jsx';
 import Search from './components/Search.jsx';
+import UserSaveRecipes from './components/UserSaveRecipes.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class App extends React.Component {
       data: JSON.stringify(query), 
       success: (data) => {
         console.log("POST DONE");
-        this.get('/recipes');
+        this.get();
       },
       error: (err) => {
         console.log('err', err);
@@ -31,14 +32,29 @@ class App extends React.Component {
     });
   }
 
-  get(path) {
+  get() {
     $.ajax({
       type: "GET",
-      url: path, 
+      url: '/recipes', 
       success: (data) => {
-        console.log('GET REQ', data, 'path', path);
         this.setState ({
           recipes: data,
+        })
+      },
+      error: (err) => {
+        console.log('err', err);
+      }
+    });
+  }
+
+  getSave() {
+    $.ajax({
+      type: "GET",
+      url: '/save', 
+      success: (data) => {
+        console.log('SAVE ', data)
+        this.setState ({
+          savedRecipes: data,
         })
       },
       error: (err) => {
@@ -55,7 +71,7 @@ class App extends React.Component {
       data: JSON.stringify(title +'...'+query),
       success: (data) => {
         console.log('GET REQ');
-        this.get('/save');
+        this.getSave('/save');
       },
       error: (err) => {
         console.log('err', err);
@@ -82,7 +98,10 @@ class App extends React.Component {
     return (<div>
       <h1>RecipeMe</h1>
       <Search search={this.search.bind(this)} value={this.query}/>
-      <List recipes={this.state.recipes} save={this.save.bind(this)}/>
+      <div className="Row">
+        <List className="column" recipes={this.state.recipes} save={this.save.bind(this)}/>
+        <UserSaveRecipes className="column" savedRecipes={this.state.savedRecipes}/>
+      </div>
     </div>)
   }
 }
