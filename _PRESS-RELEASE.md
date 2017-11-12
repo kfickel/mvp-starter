@@ -26,7 +26,7 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
-  The product will search only for recipes and output the five most highley rated recipes. The benefit of the product, is that it is easy to use and filters the recipes for the user based on their search.
+  Ever feel overwhelmed by all the recipe options online? RecipeMe makes decision making easy for our customers by providing them with five recipe options based on their search. The five recipes provided are all top-rated recipes. By providing only 5 delicious recipes, our customers find comfort in the amount of recipes provided. RecipeMe is easy to use and always reliable to provide customers with five delicious recipes.
 
 ## Problem ##
   > Describe the problem your product solves.
@@ -46,7 +46,7 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
-  "Before, I was so overwhelmed by all the choices I had to make to choose a recipe. With RecipeMe, there are a few options, but I know they will all be great. All I need to type in is an ingredient and I know RecipeMe will provide me with a delicious recipe." - customer John Smith
+  "Five Stars -- Before, I was so overwhelmed by all the choices I had to make to choose a recipe. With RecipeMe, decision-making is easy. All I need to type in is an ingredient and I know RecipeMe will provide me with 5 delicious recipes to choose from." - customer John Smith
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
