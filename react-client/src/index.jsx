@@ -37,6 +37,7 @@ class App extends React.Component {
       type: "GET",
       url: '/recipes', 
       success: (data) => {
+        console.log('rec ', data)
         this.setState ({
           recipes: data,
         })
@@ -47,37 +48,37 @@ class App extends React.Component {
     });
   }
 
-  getSave() {
-    $.ajax({
-      type: "GET",
-      url: '/save', 
-      success: (data) => {
-        console.log('SAVE ', data)
-        this.setState ({
-          savedRecipes: data,
-        })
-      },
-      error: (err) => {
-        console.log('err', err);
-      }
-    });
-  }
+  // getSave() {
+  //   $.ajax({
+  //     type: "GET",
+  //     url: '/save', 
+  //     success: (data) => {
+  //       console.log('SAVE ', data)
+  //       this.setState ({
+  //         savedRecipes: data,
+  //       })
+  //     },
+  //     error: (err) => {
+  //       console.log('err', err);
+  //     }
+  //   });
+  // }
 
-  save(title, query) {
-    console.log('TITLE ', title);
-    $.ajax({
-      type: "POST",
-      url: '/save', 
-      data: JSON.stringify(title +'...'+query),
-      success: (data) => {
-        console.log('GET REQ');
-        this.getSave('/save');
-      },
-      error: (err) => {
-        console.log('err', err);
-      }
-    });
-  }
+  // save(title, query) {
+  //   console.log('TITLE ', title);
+  //   $.ajax({
+  //     type: "POST",
+  //     url: '/save', 
+  //     data: JSON.stringify(title +'...'+query),
+  //     success: (data) => {
+  //       console.log('GET REQ');
+  //       this.getSave('/save');
+  //     },
+  //     error: (err) => {
+  //       console.log('err', err);
+  //     }
+  //   });
+  // }
 
   componentDidMount() {
     $.ajax({
@@ -99,11 +100,12 @@ class App extends React.Component {
       <h1>RecipeMe</h1>
       <Search search={this.search.bind(this)} value={this.query}/>
       <div className="Row">
-        <List className="column" recipes={this.state.recipes} save={this.save.bind(this)}/>
-        <UserSaveRecipes className="column" savedRecipes={this.state.savedRecipes}/>
+        <List className="column" recipes={this.state.recipes} />
       </div>
     </div>)
   }
 }
+// <UserSaveRecipes className="column" savedRecipes={this.state.savedRecipes}/>
+//list's save save={this.save.bind(this)}
 
 ReactDOM.render(<App class="app"/>, document.getElementById('app'));

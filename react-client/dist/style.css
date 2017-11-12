@@ -10,10 +10,10 @@ input.search {
 }
 
 .results {
-  text-align: left
+  text-align: center
 }
 
-.column {
+/*.column {
   float: left;
   width: 50%;
-}
+}*/
