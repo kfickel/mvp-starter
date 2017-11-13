@@ -35,9 +35,9 @@ var ReSaveRecipes = mongoose.model('ReSaveRecipes', recipeSchema);
 
 
 var createRecipe = function(obj, query, model, title, cb) {
-  console.log('hello ', obj);
+  // console.log('hello ', obj);
   if ('imageUrl' in obj) {
-    console.log('image');
+    // console.log('image');
     model.create({
       imageUrl: obj.imageUrl,
       title: obj.title,
@@ -84,11 +84,12 @@ var saveRecipes = function(recipeArr, query, cb) {
   for (let i = 0; i < recipeArr.recipes.length; i++) {
     // console.log('RC \n\n', recipeArr.recipes[i]);
     Recipes.find({search: query}, function(err, recipes) {
-      // console.log('RECIPES ', recipes)
+      // console.log('RECIPES ', recipes.length)
       // if (recipes.length) {
       //   for (var j = 0; j < recipes.length; j ++) {
         if(recipes.length) {
-          if (recipes[i].search !== query) {
+          // console.log('recipes \n', recipes[i], 'length \n', recipeArr.recipes.length);
+          if (recipes[0].search !== query) {
             createRecipe(recipeArr.recipes[i], query, Recipes);
           }   
         } else {

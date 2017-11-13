@@ -35,6 +35,7 @@ app.get('/recipes', function (req, res) {
     if(err) {
       res.sendStatus(500);
     } else {
+      // console.log('HERE HERE HERE');
       res.json(data);
     }
   });
@@ -52,7 +53,7 @@ app.get('/first', function(req, res) {
 
 app.post('/save', function(req, res) {
   var save = '';
-  console.log('saved is ', req.body);
+  // console.log('saved is ', req.body);
   req.on('data', (chunk) => {
     save += chunk;
   })
