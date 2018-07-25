@@ -1,18 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var foodFork = require('../foodFork/foodFork.js');
-// UNCOMMENT THE DATABASE YOU'D LIKE TO USE
-// var items = require('../database-mysql');
 var items = require('../database-mongo');
 
 var app = express();
 
-// UNCOMMENT FOR REACT
 app.use(express.static(__dirname + '/../react-client/dist'));
-
-// UNCOMMENT FOR ANGULAR
-// app.use(express.static(__dirname + '/../angular-client'));
-// app.use(express.static(__dirname + '/../node_modules'));
 
 app.post('/recipes', function(req, res) {
   var recipe = '';
@@ -35,7 +28,6 @@ app.get('/recipes', function (req, res) {
     if(err) {
       res.sendStatus(500);
     } else {
-      // console.log('HERE HERE HERE');
       res.json(data);
     }
   });
@@ -53,24 +45,19 @@ app.get('/first', function(req, res) {
 
 app.post('/save', function(req, res) {
   var save = '';
-  // console.log('saved is ', req.body);
   req.on('data', (chunk) => {
     save += chunk;
   })
   req.on('end', () => {
     for (var i = 0; i < save.length; i ++) {
-      // console.log('slice ', save.slice(i, i+3));
       if (save.slice(i, i+3) === '...') {
         var title = save.slice(1,i);
-        // console.log('title ', title);
         var query = save.slice(i+3);
         items.userRecipes(title, query, function() {
           res.send('')
         })
-        // console.log('query ', query);
       }
     }
-    // console.log('save ', save);
   })
 });
 

@@ -3,8 +3,8 @@ mongoose.connect('mongodb://localhost/recipes');
 
 var db = mongoose.connection;
 
-db.on('error', function() {
-  console.log('mongoose connection error');
+db.on('error', function(err) {
+  console.log(`mongoose connection error ${err}`);
 });
 
 db.once('open', function() {
@@ -35,9 +35,7 @@ var ReSaveRecipes = mongoose.model('ReSaveRecipes', recipeSchema);
 
 
 var createRecipe = function(obj, query, model, title, cb) {
-  // console.log('hello ', obj);
   if ('imageUrl' in obj) {
-    // console.log('image');
     model.create({
       imageUrl: obj.imageUrl,
       title: obj.title,
@@ -50,7 +48,7 @@ var createRecipe = function(obj, query, model, title, cb) {
     model.create({
       imageUrl: obj.image_url, 
       title: obj.title, 
-      rating: obj.social_rank,
+      rating: obj.socialRank,
       recipeUrl: obj.source_url,
       search: query
     })
@@ -80,15 +78,11 @@ var createRecipe = function(obj, query, model, title, cb) {
 
 var saveRecipes = function(recipeArr, query, cb) {
   search = query;
-  // console.log('recipeArr ', recipeArr.recipes[0]);
   for (let i = 0; i < recipeArr.recipes.length; i++) {
-    // console.log('RC \n\n', recipeArr.recipes[i]);
     Recipes.find({search: query}, function(err, recipes) {
-      // console.log('RECIPES ', recipes.length)
       // if (recipes.length) {
       //   for (var j = 0; j < recipes.length; j ++) {
         if(recipes.length) {
-          // console.log('recipes \n', recipes[i], 'length \n', recipeArr.recipes.length);
           if (recipes[0].search !== query) {
             createRecipe(recipeArr.recipes[i], query, Recipes);
           }   
@@ -101,7 +95,6 @@ var saveRecipes = function(recipeArr, query, cb) {
       // }
     })
     if (i === recipeArr.recipes.length - 1) {
-      console.log('i ', i);
       cb();
     }
   }
@@ -112,7 +105,6 @@ var select = function(callback) {
     if(err) {
       callback(err, null);
     } else {
-      // console.log('recipes ', recipes);
       callback(null, recipes.slice(0,5));
     }
   });
@@ -120,10 +112,8 @@ var select = function(callback) {
 }
 
 var selectAll = function(model, callback) {
-  // console.log('HERE');
   if (model === 'Recipes') {
     Recipes.find().sort({rating: -1}).exec(function(err, recipes) {
-      // console.log('RECIPE ', recipes);
       if(err) {
         callback(err, null);
       } else {
@@ -132,7 +122,6 @@ var selectAll = function(model, callback) {
     });
   } else if (model === 'ReSaveRecipes') {
     ReSaveRecipes.find().sort({rating: -1}).exec(function(err, recipes) {
-      // console.log('RECIPE ', recipes);
       if(err) {
         callback(err, null);
       } else {

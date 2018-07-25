@@ -5,7 +5,7 @@ const ListItem = (props) => (
     <p/>
     <img src={props.recipe.imageUrl}/>
     <div><a href={props.recipe.recipeUrl}>{ props.recipe.title }</a></div>
-    <div>Rating: {props.recipe.rating}</div>
+    <div>Rating: {Math.round(props.recipe.rating*100)/100}</div>
     <p/>
   </div>
 )

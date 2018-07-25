@@ -17,7 +17,6 @@ class App extends React.Component {
   }
 
   search(query) {
-    // console.log('QUERY ', query);
     $.ajax({
       type: "POST",
       url: '/recipes',
@@ -82,7 +81,6 @@ class App extends React.Component {
     $.ajax({
       url: '/first', 
       success: (data) => {
-        // console.log('DATA ', data);
         this.setState({
           recipes: data
         })

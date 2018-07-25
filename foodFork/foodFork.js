@@ -5,8 +5,6 @@ var api = require('../config.js');
 var db = require('../database-mongo/index.js');
 
 var foodFork = function(recipe, cb) {
-  console.log('recipe ', recipe)
-  // console.log('url ', `http://food2fork.com/api/search?key=${api}&q=${query}`);
   var options = {
     uri: `http://food2fork.com/api/search`,
     method:"GET",
@@ -22,7 +20,6 @@ var foodFork = function(recipe, cb) {
   request(options, function(err, res, body) {
     if (!err && res.statusCode === 200) {
       var recipes = JSON.parse(body);
-      console.log('BODY ', recipes);
       db.saveRecipes(recipes, recipe, cb);
     } else {
       console.log('ERROR ', err);

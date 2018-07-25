@@ -13,6 +13,11 @@ input.search {
   text-align: center
 }
 
+img {
+  max-width:  200px;
+  max-height: 200px;
+}
+
 /*.column {
   float: left;
   width: 50%;
